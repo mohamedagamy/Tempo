@@ -3,6 +3,26 @@ This code sample for news api mvvm,coroutines.
 
 # Tempo News App BluePrint
 
+<p float="left">
+   <img src="https://github.com/mohamedagamy/Tempo/blob/master/app/src/main/assets/tempo_news_list1.jpg"/>
+   <img src="https://github.com/mohamedagamy/Tempo/blob/master/app/src/main/assets/tempo_details_expand.jpg" /> 
+    <img src="https://github.com/mohamedagamy/Tempo/blob/master/app/src/main/assets/tempo_browser.jpg"/>
+</p>
+<p float="left">
+  <img src="https://github.com/mohamedagamy/Tempo/blob/master/app/src/main/assets/tempo_details.jpg"/>
+  <img src="https://github.com/mohamedagamy/Tempo/blob/master/app/src/main/assets/tempo_placeholder.jpg"/>
+</p>
+
+**Tools and Technologies:**
+- MVVM architecture
+- DI Dagger-Hilt
+- Kotlin coroutines 
+- Pagination without third party libs
+- Empty viewholder for recyclerview 
+- using shared glide instance, viewmodel instance
+
+
+
 ### License
 
 
