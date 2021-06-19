@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity"
+    tools:ignore="MergeRootFrame">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="parallax"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/toolbar_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.9" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/item_detail_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="36dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_title"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Title"
+                android:textColor="@color/charcoal"
+                android:textStyle="bold"
+                android:textIsSelectable="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_detail"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Details"
+                android:textIsSelectable="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_author"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Author"
+                android:textColor="@color/dark_gray"
+                android:textStyle="bold"
+                android:textIsSelectable="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_desc"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Desc"
+                android:textIsSelectable="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_source"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Source"
+                android:textColor="@color/dark_gray"
+                android:textStyle="bold"
+                android:textIsSelectable="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_content"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Content"
+                android:textIsSelectable="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_date"
+                style="?android:attr/textAppearanceListItemSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="Date"
+                android:textColor="@color/dark_gray"
+                android:textStyle="bold"
+                android:textIsSelectable="true"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/item_detail_scroll_view"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/ic_baseline_open_in_browser_24"
+        tools:ignore="ContentDescription" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
