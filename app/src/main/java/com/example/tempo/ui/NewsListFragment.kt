@@ -3,6 +3,7 @@ package com.example.tempo.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tempo.R
+import com.example.tempo.data.model.Article
 import com.example.tempo.data.model.Status
 import com.example.tempo.databinding.FragmentNewsListBinding
 import com.example.tempo.paging.EndlessRecyclerViewScrollListener
@@ -22,6 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import java.util.ArrayList
+
 @AndroidEntryPoint
 class NewsListFragment : Fragment() {
     private var _binding: FragmentNewsListBinding? = null
@@ -42,6 +46,14 @@ class NewsListFragment : Fragment() {
         initViews()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+    }
+
     private fun initViews() {
         setUpAdapter()
         initSearchView()
@@ -54,19 +66,33 @@ class NewsListFragment : Fragment() {
         (activity as MainActivity).appViewModel.getNewsList(searchKey,pageNum)
             .observe(viewLifecycleOwner,{
                 binding?.swipeToRefresh?.isRefreshing = false
+                Timber.d("status: ${it.status}")
                 when(it.status){
                     Status.SUCCESS -> {
-                        context?.showToast("Success")
+                        Timber.d("SUCCESS")
+                        Timber.d("data: ${it.data}")
                     }
                     Status.ERROR -> {
-                        context?.showToast("Error")
+                        Timber.d("ERROR")
+                        context?.showToast("server error")
                     }
                     Status.LOADING -> {
+                        Timber.d("LOADING")
                         binding?.swipeToRefresh?.isRefreshing = true
                     }
                 }
 
         })
+    }
+
+    private fun showEmptyHolder(isShown: Boolean) {
+        if(isShown){
+            binding?.rvNewsList?.visibility = View.GONE
+            binding?.ivPlaceholder?.visibility = View.VISIBLE
+        }else{
+            binding?.rvNewsList?.visibility = View.VISIBLE
+            binding?.ivPlaceholder?.visibility = View.GONE
+        }
     }
 
     private fun initSearchView() {
@@ -129,7 +155,8 @@ class NewsListFragment : Fragment() {
         }
 
         (activity as MainActivity).appViewModel.newsList.observe(viewLifecycleOwner,{
-            newsAdapter.appendNews(it.toMutableList())
+            newsAdapter.appendNews(it.articles.toMutableList())
+            showEmptyHolder(newsAdapter.itemCount == 0)
         })
     }
 
@@ -140,6 +167,7 @@ class NewsListFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        Timber.d("adapter destroy size ${newsAdapter.articles.size}")
         super.onDestroyView()
         _binding = null
     }

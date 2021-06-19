@@ -1,6 +1,5 @@
 package com.example.tempo.data.api
 import com.example.tempo.data.model.ApiResult
-import io.reactivex.Single
 import retrofit2.http.*
 
 interface ApiService {

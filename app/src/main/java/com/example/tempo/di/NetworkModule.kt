@@ -1,5 +1,6 @@
 package com.example.tempo.di
 
+import com.example.tempo.ErrorInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.example.tempo.data.repo.Constant
@@ -54,13 +55,21 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    fun provideErrorInterceptor(): ErrorInterceptor {
+        return ErrorInterceptor()
+    }
+
+    @Provides
+    @Singleton
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
+        errorInterceptor: ErrorInterceptor
     ): OkHttpClient {
 
         val builder = OkHttpClient.Builder()
         builder
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(errorInterceptor)
             .connectTimeout(Constant.CONNECTION_TIME_OUT, TimeUnit.SECONDS)
             .readTimeout(Constant.CONNECTION_READ_TIME_OUT, TimeUnit.SECONDS)
         return builder.build()

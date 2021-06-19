@@ -8,14 +8,11 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class TempoApp : Application(){
-    lateinit var context: ApplicationContext
     override fun onCreate() {
         super.onCreate()
 
         Timber.uprootAll()
         Timber.plant(Timber.DebugTree())
-        //initRxJavaError()
-
     }
 
     private fun initRxJavaError() {

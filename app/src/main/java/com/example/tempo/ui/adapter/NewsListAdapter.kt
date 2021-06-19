@@ -26,7 +26,7 @@ class NewsListAdapter constructor(val glide:RequestManager): RecyclerView.Adapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = articles[position]
         holder.tvTitle.text = item.title
-        holder.tvSource.text = item.source.name
+        holder.tvSource.text = item.source?.name
 
         glide.load(item.urlToImage)
             .centerCrop()

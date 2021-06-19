@@ -61,7 +61,7 @@ class NewsDetailFragment : Fragment() {
             tvAuthor?.text = it.author
             tvContent?.text = it.content
             tvDate?.text = it.publishedAt
-            tvSource?.text = it.source.name
+            tvSource?.text = it.source?.name
             tvTitle?.text = it.title
         }
 
